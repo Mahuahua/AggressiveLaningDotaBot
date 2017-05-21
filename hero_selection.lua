@@ -65,6 +65,11 @@ function GetPicks()
 end
 
 function PickBot(slot)
+  --testing
+  if slot == 4 then
+    SelectHero(4, 'npc_dota_hero_death_prophet');
+    return;
+  end
   local hero = GetRandomHero();
   --print("picking hero ", hero, " for slot ", slot);
   SelectHero(slot, hero);
