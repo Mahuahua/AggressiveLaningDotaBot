@@ -70,6 +70,14 @@ function PickBot(slot)
     SelectHero(4, 'npc_dota_hero_death_prophet');
     return;
   end
+  if slot == 3 then
+    SelectHero(3, 'npc_dota_hero_viper');
+    return;
+  end
+  if slot == 5 then
+    SelectHero(5, 'npc_dota_hero_drow_ranger');
+    return;
+  end
   local hero = GetRandomHero();
   --print("picking hero ", hero, " for slot ", slot);
   SelectHero(slot, hero);

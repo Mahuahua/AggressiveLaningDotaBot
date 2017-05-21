@@ -145,4 +145,13 @@ function AbilityUsageThink()
       return npcBot:ActionPush_UseAbility(ult);
     end
   end
+  
+  if npcBot:GetActiveMode() == BOT_MODE_RETREAT then
+    if silence:IsFullyCastable() then
+      local aoe = npcBot:FindAoELocation(true, true, npcBot:GetLocation(), silence:GetCastRange(), 425, 0.0, 100000);
+      if aoe.count >= 3 then
+        return npcBot:ActionPush_UseAbilityOnLocation(silence, aoe.targetloc);
+      end
+    end
+  end
 end
