@@ -41,8 +41,7 @@ function AbilityUsageThink()
         return npcBot:ActionPush_UseAbilityOnLocation(silence, aoe.targetloc);
       end
     end
-    local targets = npcBot:GetNearbyHeroes( 300, true, BOT_MODE_NONE);
-    if #targets > 0 and arrow:IsFullyCastable() then
+    if arrow:IsFullyCastable() then
       if arrow:GetAutoCastState() ~= true then
         return arrow:ToggleAutoCast();
       end

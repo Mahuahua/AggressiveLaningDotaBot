@@ -39,8 +39,7 @@ function AbilityUsageThink()
       print("attack ult");
       return npcBot:ActionPush_UseAbilityOnEntity(ult, target);
     end
-    local targets = npcBot:GetNearbyHeroes( npcBot:GetAttackRange() + 10, true, BOT_MODE_NONE);
-    if #targets > 0 and poison:IsFullyCastable() then
+    if poison:IsFullyCastable() then
       if poison:GetAutoCastState() ~= true then
         return poison:ToggleAutoCast();
       end
