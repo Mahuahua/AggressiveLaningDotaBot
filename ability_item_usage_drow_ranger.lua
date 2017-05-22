@@ -16,7 +16,7 @@ function AbilityUsageThink()
     end
     if npcBot:GetHealth() == npcBot:GetMaxHealth() or ((npcBot:GetMaxHealth() - npcBot:GetHealth()) / npcBot:GetHealthRegen() < 30) or (npcBot:GetHealth() / npcBot:GetMaxHealth() > 0.7) then
       local targets = npcBot:GetNearbyHeroes( npcBot:GetAttackRange() + 10, true, BOT_MODE_NONE);
-      if #targets > 0 and npcBot:GetLastAttackTime() > npcBot:GetSecondsPerAttack() then
+      if #targets > 0 and GameTime() - npcBot:GetLastAttackTime() > npcBot:GetSecondsPerAttack() then
         local target = targets[RandomInt(1, #targets)];
         print("laning arrow");
         if arrow:IsFullyCastable() then
@@ -31,7 +31,6 @@ function AbilityUsageThink()
       print("laning silence");
       return npcBot:ActionPush_UseAbilityOnEntity(silence, target);
     end
-    return;
   end
 
   if npcBot:GetActiveMode() == BOT_MODE_ATTACK then

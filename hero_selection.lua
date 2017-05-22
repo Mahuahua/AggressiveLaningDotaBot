@@ -74,8 +74,16 @@ function PickBot(slot)
     SelectHero(3, 'npc_dota_hero_viper');
     return;
   end
+  if slot == 2 then
+    SelectHero(2, 'npc_dota_hero_dazzle');
+    return;
+  end
   if slot == 5 then
     SelectHero(5, 'npc_dota_hero_drow_ranger');
+    return;
+  end
+  if slot == 6 then
+    SelectHero(6, 'npc_dota_hero_lich');
     return;
   end
   local hero = GetRandomHero();

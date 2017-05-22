@@ -15,7 +15,7 @@ function AbilityUsageThink()
   end
 
   if npcBot:GetActiveMode() == BOT_MODE_LANING then
-    if npcBot:GetMana() == npcBot:GetMaxMana() or ((npcBot:GetMaxMana() - npcBot:GetMana()) / npcBot:GetManaRegen() < 60) or (npcBot:GetMana() / npcBot:GetMaxMana() > 0.45) then
+    if npcBot:GetMana() == npcBot:GetMaxMana() or ((npcBot:GetMaxMana() - npcBot:GetMana()) / npcBot:GetManaRegen() < 60) or (npcBot:GetMana() / npcBot:GetMaxMana() > 0.55) then
       if swarm:IsFullyCastable() then
         local targets = npcBot:GetNearbyHeroes( swarm:GetCastRange() + 130, true, BOT_MODE_NONE);
         if #targets > 0 then
@@ -28,7 +28,7 @@ function AbilityUsageThink()
 
     if npcBot:GetHealth() == npcBot:GetMaxHealth() or ((npcBot:GetMaxHealth() - npcBot:GetHealth()) / npcBot:GetHealthRegen() < 30) or (npcBot:GetHealth() / npcBot:GetMaxHealth() > 0.7) then
       local targets = npcBot:GetNearbyHeroes( npcBot:GetAttackRange() + 10, true, BOT_MODE_NONE);
-      if #targets > 0 and npcBot:GetLastAttackTime() > npcBot:GetSecondsPerAttack() then
+      if #targets > 0 and GameTime() - npcBot:GetLastAttackTime() > npcBot:GetSecondsPerAttack() then
         local target = targets[RandomInt(1, #targets)];
         print("laning attack");
         return npcBot:ActionPush_AttackUnit(target, true);
@@ -41,7 +41,6 @@ function AbilityUsageThink()
       print("laning siphon");
       return npcBot:ActionPush_UseAbilityOnEntity(siphon, target);
     end
-    return;
   end
 
   if npcBot:GetActiveMode() == BOT_MODE_ATTACK then
@@ -90,7 +89,6 @@ function AbilityUsageThink()
         return npcBot:ActionPush_UseAbilityOnLocation(silence, aoe.targetloc);
       end
     end
-    return;
   end
 
   if npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_TOP or npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_MID or npcBot:GetActiveMode() == BOT_MODE_PUSH_TOWER_BOT then
@@ -137,7 +135,6 @@ function AbilityUsageThink()
         return npcBot:ActionPush_UseAbilityOnEntity(siphon, target);
       end
     end
-    return;
   end
 
   if npcBot:GetActiveMode() == BOT_MODE_ROSHAN then
@@ -145,7 +142,7 @@ function AbilityUsageThink()
       return npcBot:ActionPush_UseAbility(ult);
     end
   end
-  
+
   if npcBot:GetActiveMode() == BOT_MODE_RETREAT then
     if silence:IsFullyCastable() then
       local aoe = npcBot:FindAoELocation(true, true, npcBot:GetLocation(), silence:GetCastRange(), 425, 0.0, 100000);
